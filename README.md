@@ -40,7 +40,7 @@ Um evento online e totalmente gratuito que o ajudará a dar o próximo passo na 
 ### Dias
 
 - Dia 1: Acelerando sua evolução 12/10 - :heavy_check_mark:
-- Dia 2: Olhando as oportunidades 13/10 - :x:
+- Dia 2: Olhando as oportunidades 13/10 - :heavy_check_mark:
 - Dia 3: A escolha da stack 14/10 - :x:
 - Dia 4: Até 2 anos em 2 meses 15/10 - :x:
 - Dia 5: A milha extra 16/10 - :x:
@@ -67,6 +67,27 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 Para clonar e executar este projeto, você precisará instalar o [Git](https://git-scm.com), [Node.js][nodejs] e [Yarn][yarn] no seu computador.
 
+### Instalando a aplicação Back-end
+
+```bash
+# Clona este repositório
+$ git clone https://github.com/leovieira/NLW-3.0
+
+# Entra no diretório
+$ cd NLW-3.0/backend
+
+# Instala as dependências
+$ yarn install
+
+# Cria o banco de dados
+$ yarn typeorm migration:run
+
+# Inicia o servidor
+$ yarn run dev
+
+# A aplicação está sendo executada na porta 3333
+```
+
 ### Instalando a aplicação Web
 
 ```bash
@@ -82,7 +103,7 @@ $ yarn install
 # Inicia o servidor
 $ yarn start
 
-# running on port 3000
+# A aplicação está sendo executada na porta 3000
 ```
 
 ## 🤔 Como contribuir
