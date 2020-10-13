@@ -11,10 +11,10 @@
   <a href="https://www.leovieira.dev">
     <img alt="Made by leovieira" src="https://img.shields.io/static/v1?label=made%20by&message=leovieira&style=flat&color=7159c1&labelColor=000000" />
   </a>
-  <a href="https://github.com/leovieira/NLW-3.0/commits/master">
+  <a href="https://github.com/leovieira/NLW-3.0/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/leovieira/NLW-3.0?style=flat&color=7159c1&labelColor=000000" />
   </a>
-  <a href="https://github.com/leovieira/NLW-3.0/blob/master/LICENSE">
+  <a href="https://github.com/leovieira/NLW-3.0/blob/main/LICENSE">
     <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&style=flat&color=7159c1&labelColor=000000" />
   </a>
   <a href="https://github.com/leovieira/NLW-3.0/stargazers">
@@ -50,7 +50,7 @@ Um evento online e totalmente gratuito que o ajudará a dar o próximo passo na 
 Happy é um projeto desenvolvido pensando no dia das crianças. O objetivo é conectar pessoas a orfanatos próximos a suas residências.
 
 <h1 align="center">
-  <img alt="Happy" title="Happy" src=".github/capa.png" width="500px" />
+  <img alt="Happy" title="Happy" src=".github/capa.png" width="800px" />
 </h1>
 
 ## :rocket: Tecnologias
@@ -96,7 +96,7 @@ Depois que o merge da sua pull request for feito, você pode deletar a sua branc
 
 ## :memo: Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/leovieira/NLW-3.0/blob/master/LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/leovieira/NLW-3.0/blob/main/LICENSE) para mais detalhes.
 
 Este README foi baseado em: https://github.com/DanielObara/NLW-1.0
 
