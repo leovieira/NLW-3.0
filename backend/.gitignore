@@ -15,7 +15,12 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
-/uploads/*
+/uploads/*.jpg
+/uploads/*.jpeg
+/uploads/*.png
+/uploads/*.bmp
+/uploads/*.webp
+/uploads/*.gif
 /src/database/*.sqlite
 /src/database/*.db
 /src/database/*.s3db
