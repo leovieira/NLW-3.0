@@ -64,3 +64,45 @@
 #page-map .create-orphanage:hover {
 	background: #17d6eb;
 }
+
+#page-map .map-popup .leaflet-popup-content-wrapper {
+	background: rgb(255, 255, 255, 0.8);
+	border-radius: 20px;
+}
+
+#page-map .map-popup .leaflet-popup-content {
+	margin: 8px 12px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 14px;
+	padding-right: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #0089a5;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#page-map .map-popup .leaflet-popup-content a {
+	min-width: 40px;
+	min-height: 40px;
+	max-width: 40px;
+	max-height: 40px;
+	margin-left: 14px;
+	background: #15c3d6;
+	box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s;
+}
+
+#page-map .map-popup .leaflet-popup-content a:hover {
+	background: #13b0c2;
+}
+
+#page-map .map-popup .leaflet-popup-tip-container {
+	display: none;
+}

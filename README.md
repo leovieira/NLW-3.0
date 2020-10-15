@@ -41,7 +41,7 @@ Um evento online e totalmente gratuito que o ajudará a dar o próximo passo na 
 
 - Dia 1: Acelerando sua evolução 12/10 - :heavy_check_mark:
 - Dia 2: Olhando as oportunidades 13/10 - :heavy_check_mark:
-- Dia 3: A escolha da stack 14/10 - :x:
+- Dia 3: A escolha da stack 14/10 - :heavy_check_mark:
 - Dia 4: Até 2 anos em 2 meses 15/10 - :x:
 - Dia 5: A milha extra 16/10 - :x:
 
@@ -101,7 +101,7 @@ $ cd NLW-3.0/web
 $ yarn install
 
 # Inicia o servidor
-$ yarn start
+$ yarn run start
 
 # A aplicação está sendo executada na porta 3000
 ```
