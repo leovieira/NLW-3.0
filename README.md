@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  :clock130:  NextLevelWeek 3.0 🚀 Em andamento! :clock130:
+  :heavy_check_mark: NextLevelWeek 3.0 🚀 Concluído! :heavy_check_mark:
 </h4>
 
 <p align="center">
@@ -43,7 +43,7 @@ Um evento online e totalmente gratuito que o ajudará a dar o próximo passo na 
 - Dia 2: Olhando as oportunidades 13/10 - :heavy_check_mark:
 - Dia 3: A escolha da stack 14/10 - :heavy_check_mark:
 - Dia 4: Até 2 anos em 2 meses 15/10 - :heavy_check_mark:
-- Dia 5: A milha extra 16/10 - :x:
+- Dia 5: A milha extra 16/10 - :heavy_check_mark:
 
 ## 💻 Projeto
 
