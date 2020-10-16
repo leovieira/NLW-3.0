@@ -42,7 +42,7 @@ Um evento online e totalmente gratuito que o ajudará a dar o próximo passo na 
 - Dia 1: Acelerando sua evolução 12/10 - :heavy_check_mark:
 - Dia 2: Olhando as oportunidades 13/10 - :heavy_check_mark:
 - Dia 3: A escolha da stack 14/10 - :heavy_check_mark:
-- Dia 4: Até 2 anos em 2 meses 15/10 - :x:
+- Dia 4: Até 2 anos em 2 meses 15/10 - :heavy_check_mark:
 - Dia 5: A milha extra 16/10 - :x:
 
 ## 💻 Projeto
@@ -104,6 +104,28 @@ $ yarn install
 $ yarn run start
 
 # A aplicação está sendo executada na porta 3000
+```
+
+### Instalando a aplicação Mobile
+
+```bash
+# Clona este repositório
+$ git clone https://github.com/leovieira/NLW-3.0
+
+# Entra no diretório
+$ cd NLW-3.0/mobile
+
+# Instala as dependências
+$ yarn install
+
+# Inicia o expo em modo debug
+$ yarn run start
+
+# A página de debug do expo será aberta no seu navegador, apenas leia o QR Code com o App do expo
+
+# Se houver algum problema com as fontes, execute:
+$ expo install expo-font @expo-google-fonts/nunito
+
 ```
 
 ## 🤔 Como contribuir
