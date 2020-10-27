@@ -1,6 +1,7 @@
 #page-map {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
+	min-height: 600px;
 	position: relative;
 	display: flex;
 }
@@ -8,7 +9,7 @@
 #page-map aside {
 	width: 440px;
 	background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%);
-	padding: 3%;
+	padding: 40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -22,6 +23,7 @@
 }
 
 #page-map aside p {
+	font-size: 20px;
 	line-height: 28px;
 	margin-top: 24px;
 }
@@ -79,17 +81,19 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#page-map .map-popup .leaflet-popup-content span {
+	width: 75%;
 	color: #0089a5;
 	font-size: 20px;
 	font-weight: bold;
+	word-wrap: break-word;
 }
 
 #page-map .map-popup .leaflet-popup-content a {
-	min-width: 40px;
-	min-height: 40px;
-	max-width: 40px;
-	max-height: 40px;
-	margin-left: 14px;
+	width: 40px;
+	height: 40px;
 	background: #15c3d6;
 	box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
 	border-radius: 12px;
@@ -105,4 +109,73 @@
 
 #page-map .map-popup .leaflet-popup-tip-container {
 	display: none;
+}
+
+@media screen and (max-width: 800px) {
+	#page-map {
+		flex-direction: column;
+	}
+
+	#page-map aside {
+		width: 100%;
+		height: 285px;
+		padding: 30px;
+		flex-direction: row;
+	}
+
+	#page-map aside h2 {
+		max-width: 400px;
+		font-size: 40px;
+		line-height: 40px;
+		margin-top: 20px;
+	}
+
+	#page-map aside p {
+		line-height: 28px;
+		margin-top: 15px;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	#page-map aside h2 {
+		font-size: 34px;
+		line-height: 30px;
+	}
+
+	#page-map aside p {
+		font-size: 18px;
+		line-height: 25px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#page-map aside {
+		padding: 6%;
+	}
+
+	#page-map .create-orphanage {
+		bottom: 80px;
+		right: 30px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#page-map aside h2 {
+		font-size: 30px;
+	}
+
+	#page-map aside p {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 300px) {
+	#page-map aside h2 {
+		margin-top: 8px;
+		font-size: 28px;
+	}
+
+	#page-map aside p {
+		font-size: 14px;
+	}
 }

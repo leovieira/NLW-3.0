@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import MaskedInput from "react-text-mask";
 import { useHistory } from "react-router-dom";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import Leaflet, { LeafletMouseEvent } from "leaflet";
@@ -18,17 +19,34 @@ const happyMapIcon = Leaflet.icon({
 	iconAnchor: [29, 68],
 });
 
-export default function CreateOrphanage() {
+function CreateOrphanage() {
 	const history = useHistory();
 
 	const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 	const [name, setName] = useState("");
 	const [about, setAbout] = useState("");
 	const [instructions, setInstructions] = useState("");
+	const [whatsapp, setWhatsapp] = useState("");
 	const [opening_hours, setOpeningHours] = useState("");
 	const [open_on_weekends, setOpenOnWeekends] = useState(true);
 	const [images, setImages] = useState<File[]>([]);
 	const [previewImages, setPreviewImages] = useState<string[]>([]);
+
+	const [formError, setFormError] = useState({ status: false, msg: "" });
+
+	function showMsg(
+		error: boolean,
+		msg: string,
+		redirect: string,
+		counter: number
+	) {
+		history.push("/orphanages/creation-status", {
+			error,
+			msg,
+			redirect,
+			counter,
+		});
+	}
 
 	function handleMapClick(event: LeafletMouseEvent) {
 		const { lat, lng } = event.latlng;
@@ -60,25 +78,47 @@ export default function CreateOrphanage() {
 
 		const { latitude, longitude } = position;
 
-		const data = new FormData();
+		if (
+			name !== "" &&
+			about !== "" &&
+			latitude !== 0 &&
+			longitude !== 0 &&
+			instructions !== "" &&
+			whatsapp !== "" &&
+			opening_hours !== "" &&
+			images.length !== 0
+		) {
+			const data = new FormData();
 
-		data.append("name", name);
-		data.append("about", about);
-		data.append("latitude", String(latitude));
-		data.append("longitude", String(longitude));
-		data.append("instructions", instructions);
-		data.append("opening_hours", opening_hours);
-		data.append("open_on_weekends", String(open_on_weekends));
+			data.append("name", name);
+			data.append("about", about);
+			data.append("latitude", String(latitude));
+			data.append("longitude", String(longitude));
+			data.append("instructions", instructions);
+			data.append("whatsapp", whatsapp);
+			data.append("opening_hours", opening_hours);
+			data.append("open_on_weekends", String(open_on_weekends));
 
-		images.forEach((image) => {
-			data.append("images", image);
-		});
+			images.forEach((image) => {
+				data.append("images", image);
+			});
 
-		await api.post("orphanages", data);
-
-		alert("Cadastro realizado com sucesso!");
-
-		history.push("/app");
+			await api
+				.post("orphanages", data)
+				.then((response) => {
+					if (response.status === 201) {
+						showMsg(false, "Orfanato criado com sucesso!", "/app", 5);
+					} else {
+						showMsg(true, "Oops... algo deu errado!", "/orphanages/create", 5);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					showMsg(true, "Oops... algo deu errado!", "/orphanages/create", 5);
+				});
+		} else {
+			setFormError({ status: true, msg: "*Preencha todos os campos!" });
+		}
 	}
 
 	return (
@@ -112,6 +152,7 @@ export default function CreateOrphanage() {
 						<div className="input-block">
 							<label htmlFor="name">Nome</label>
 							<input
+								type="text"
 								id="name"
 								value={name}
 								onChange={(event) => setName(event.target.value)}
@@ -164,8 +205,37 @@ export default function CreateOrphanage() {
 						</div>
 
 						<div className="input-block">
+							<label htmlFor="whatsapp">Whatsapp</label>
+							<MaskedInput
+								mask={[
+									"(",
+									/[1-9]/,
+									/\d/,
+									")",
+									" ",
+									/\d/,
+									/\d/,
+									/\d/,
+									/\d/,
+									/\d/,
+									"-",
+									/\d/,
+									/\d/,
+									/\d/,
+									/\d/,
+								]}
+								type="text"
+								id="whatsapp"
+								placeholder="(   ) _____-____"
+								value={whatsapp}
+								onChange={(event) => setWhatsapp(event.target.value)}
+							/>
+						</div>
+
+						<div className="input-block">
 							<label htmlFor="opening_hours">Horário das visitas</label>
 							<input
+								type="text"
 								id="opening_hours"
 								value={opening_hours}
 								onChange={(event) => setOpeningHours(event.target.value)}
@@ -197,10 +267,14 @@ export default function CreateOrphanage() {
 					<button className="confirm-button" type="submit">
 						Confirmar
 					</button>
+
+					{formError.status && (
+						<span className="form-error">{formError.msg}</span>
+					)}
 				</form>
 			</main>
 		</div>
 	);
 }
 
-// return `https://a.tile.openstreetmap.org/${z}/${x}/${y}.png`;
+export default CreateOrphanage;

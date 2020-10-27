@@ -1,0 +1,53 @@
+#page-creation-status {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.content > p {
+	margin-top: 20px;
+	font-size: 26px;
+}
+
+.content .redirect {
+	position: absolute;
+	bottom: 5px;
+	left: 10px;
+}
+
+@media screen and (max-width: 500px) {
+	.content .redirect {
+		bottom: 20px;
+		left: unset;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.content > p {
+		font-size: 24px;
+	}
+
+	.content .redirect {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 300px) {
+	.content > p {
+		font-size: 20px;
+	}
+
+	.content .redirect {
+		font-size: 14px;
+	}
+}
