@@ -186,6 +186,7 @@ function CreateOrphanage() {
 									type="file"
 									id="image[]"
 									multiple
+									accept=".png, .jpg, .jpeg"
 									onChange={handleSelectImages}
 								/>
 							</div>
