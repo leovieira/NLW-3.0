@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
 	nextButtonText: {
 		fontFamily: "Nunito_800ExtraBold",
 		fontSize: 16,
-		color: "#FFF",
+		color: "#fff",
 	},
 });

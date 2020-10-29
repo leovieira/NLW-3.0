@@ -110,14 +110,16 @@ const styles = StyleSheet.create({
 		width: 185,
 		minHeight: 46,
 		paddingVertical: 12,
-		paddingHorizontal: 25,
+		paddingLeft: 20,
+		paddingRight: 25,
 		backgroundColor: "#fff",
 		borderRadius: 16,
 		flexDirection: "row",
-		justifyContent: "center",
+		justifyContent: "space-between",
 	},
 
 	calloutText: {
+		width: "90%",
 		marginRight: 8,
 		fontFamily: "Nunito_700Bold",
 		fontSize: 14,

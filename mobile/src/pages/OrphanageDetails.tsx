@@ -7,7 +7,9 @@ import {
 	StyleSheet,
 	Dimensions,
 	Linking,
+	ActivityIndicator,
 } from "react-native";
+import Swiper from "react-native-swiper";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
@@ -28,6 +30,7 @@ interface Orphanage {
 	longitude: number;
 	about: string;
 	instructions: string;
+	whatsapp: string;
 	opening_hours: string;
 	open_on_weekends: boolean;
 	images: Array<{
@@ -51,22 +54,47 @@ export default function OrphanageDetails() {
 
 	if (!orphanage) {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.description}>Carregando...</Text>
+			<View style={styles.loadingContainer}>
+				<ActivityIndicator size={50} color="#15b6d6" />
 			</View>
 		);
 	}
 
 	function handleOpenGoogleMapsRoutes() {
-		Linking.openURL(
-			`https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`
-		);
+		if (orphanage) {
+			Linking.openURL(
+				`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage?.longitude}`
+			);
+		}
+	}
+
+	function handleWhatsapp() {
+		if (orphanage) {
+			let whatsappOnlyNumbers = orphanage.whatsapp.replace("(", "");
+			whatsappOnlyNumbers = whatsappOnlyNumbers.replace(")", "");
+			whatsappOnlyNumbers = whatsappOnlyNumbers.replace("-", "");
+			whatsappOnlyNumbers = whatsappOnlyNumbers.replace(" ", "");
+
+			let message = "Olá, desejo visitar o orfanano!";
+			let messageConverted = message.replace(" ", "%20");
+
+			Linking.openURL(
+				`whatsapp://send?phone=55${whatsappOnlyNumbers}&text=${messageConverted}`
+			);
+		}
 	}
 
 	return (
 		<ScrollView style={styles.container}>
 			<View style={styles.imagesContainer}>
-				<ScrollView horizontal pagingEnabled>
+				<Swiper
+					showsButtons={orphanage.images.length > 1 ? true : false}
+					autoplay={true}
+					dotStyle={styles.swiperDot}
+					activeDotStyle={styles.swiperActiveDot}
+					nextButton={<Text style={styles.swiperButtonText}>›</Text>}
+					prevButton={<Text style={styles.swiperButtonText}>‹</Text>}
+				>
 					{orphanage.images.map((image) => {
 						return (
 							<Image
@@ -78,7 +106,7 @@ export default function OrphanageDetails() {
 							/>
 						);
 					})}
-				</ScrollView>
+				</Swiper>
 			</View>
 
 			<View style={styles.detailsContainer}>
@@ -126,22 +154,22 @@ export default function OrphanageDetails() {
 
 				<View style={styles.scheduleContainer}>
 					<View style={[styles.scheduleItem, styles.scheduleItemBlue]}>
-						<Feather name="clock" size={40} color="#2AB5D1" />
+						<Feather name="clock" size={40} color="#2ab5d1" />
 						<Text style={[styles.scheduleText, styles.scheduleTextBlue]}>
-							{orphanage.opening_hours}
+							Segunda à sexta {orphanage.opening_hours}
 						</Text>
 					</View>
 
 					{orphanage.open_on_weekends ? (
 						<View style={[styles.scheduleItem, styles.scheduleItemGreen]}>
-							<Feather name="info" size={40} color="#39CC83" />
+							<Feather name="info" size={40} color="#39cc83" />
 							<Text style={[styles.scheduleText, styles.scheduleTextGreen]}>
 								Atendemos fim de semana
 							</Text>
 						</View>
 					) : (
 						<View style={[styles.scheduleItem, styles.scheduleItemRed]}>
-							<Feather name="info" size={40} color="#FF669D" />
+							<Feather name="info" size={40} color="#ff669d" />
 							<Text style={[styles.scheduleText, styles.scheduleTextRed]}>
 								Não atendemos fim de semana
 							</Text>
@@ -149,8 +177,8 @@ export default function OrphanageDetails() {
 					)}
 				</View>
 
-				<RectButton style={styles.contactButton} onPress={() => {}}>
-					<FontAwesome name="whatsapp" size={24} color="#FFF" />
+				<RectButton style={styles.contactButton} onPress={handleWhatsapp}>
+					<FontAwesome name="whatsapp" size={24} color="#fff" />
 					<Text style={styles.contactButtonText}>Entrar em contato</Text>
 				</RectButton>
 			</View>
@@ -159,6 +187,13 @@ export default function OrphanageDetails() {
 }
 
 const styles = StyleSheet.create({
+	loadingContainer: {
+		width: "100%",
+		height: "100%",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+
 	container: {
 		flex: 1,
 	},
@@ -173,12 +208,34 @@ const styles = StyleSheet.create({
 		resizeMode: "cover",
 	},
 
+	swiperDot: {
+		width: 14,
+		height: 14,
+		borderRadius: 7,
+		borderStyle: "solid",
+		borderWidth: 1,
+		borderColor: "#15c3d6",
+		backgroundColor: "#fff",
+	},
+
+	swiperActiveDot: {
+		width: 14,
+		height: 14,
+		borderRadius: 7,
+		backgroundColor: "#15c3d6",
+	},
+
+	swiperButtonText: {
+		fontSize: 50,
+		color: "#15c3d6",
+	},
+
 	detailsContainer: {
 		padding: 24,
 	},
 
 	title: {
-		color: "#4D6F80",
+		color: "#4d6f80",
 		fontSize: 30,
 		fontFamily: "Nunito_700Bold",
 	},
@@ -194,9 +251,9 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		overflow: "hidden",
 		borderWidth: 1.2,
-		borderColor: "#B3DAE2",
+		borderColor: "#b3dae2",
 		marginTop: 40,
-		backgroundColor: "#E6F7FB",
+		backgroundColor: "#e6f7fb",
 	},
 
 	mapStyle: {
@@ -218,7 +275,7 @@ const styles = StyleSheet.create({
 	separator: {
 		height: 0.8,
 		width: "100%",
-		backgroundColor: "#D3E2E6",
+		backgroundColor: "#d3e2e6",
 		marginVertical: 40,
 	},
 
@@ -234,23 +291,23 @@ const styles = StyleSheet.create({
 	},
 
 	scheduleItemBlue: {
-		backgroundColor: "#E6F7FB",
+		backgroundColor: "#e6f7fb",
 		borderWidth: 1,
-		borderColor: "#B3DAE2",
+		borderColor: "#b3dae2",
 		borderRadius: 20,
 	},
 
 	scheduleItemGreen: {
-		backgroundColor: "#EDFFF6",
+		backgroundColor: "#edfff6",
 		borderWidth: 1,
-		borderColor: "#A1E9C5",
+		borderColor: "#a1e9c5",
 		borderRadius: 20,
 	},
 
 	scheduleItemRed: {
-		backgroundColor: "#FEF6F9",
+		backgroundColor: "#fef6f9",
 		borderWidth: 1,
-		borderColor: "#FFBCD4",
+		borderColor: "#ffbcd4",
 		borderRadius: 20,
 	},
 
@@ -262,19 +319,19 @@ const styles = StyleSheet.create({
 	},
 
 	scheduleTextBlue: {
-		color: "#5C8599",
+		color: "#5c8599",
 	},
 
 	scheduleTextGreen: {
-		color: "#37C77F",
+		color: "#37c77f",
 	},
 
 	scheduleTextRed: {
-		color: "#FF669D",
+		color: "#ff669d",
 	},
 
 	contactButton: {
-		backgroundColor: "#3CDC8C",
+		backgroundColor: "#3cdc8c",
 		borderRadius: 20,
 		flexDirection: "row",
 		justifyContent: "center",
@@ -285,7 +342,7 @@ const styles = StyleSheet.create({
 
 	contactButtonText: {
 		fontFamily: "Nunito_800ExtraBold",
-		color: "#FFF",
+		color: "#fff",
 		fontSize: 16,
 		marginLeft: 16,
 	},

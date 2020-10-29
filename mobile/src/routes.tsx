@@ -7,6 +7,7 @@ import OrphanageDetails from "./pages/OrphanageDetails";
 
 import SelectMapPosition from "./pages/CreateOrphanage/SelectMapPosition";
 import OrphanageData from "./pages/CreateOrphanage/OrphanageData";
+import CreationStatus from "./pages/CreationStatus";
 
 import Header from "./components/Header";
 
@@ -49,6 +50,8 @@ export default function Routes() {
 						header: () => <Header title="Informe os dados" showCancel />,
 					}}
 				/>
+
+				<Screen name="CreationStatus" component={CreationStatus} />
 			</Navigator>
 		</NavigationContainer>
 	);
